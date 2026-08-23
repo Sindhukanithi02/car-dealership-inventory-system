@@ -1,67 +1,73 @@
-``` marks:
-
 # PROMPTS.md
 
-This file contains the prompts used while developing the **Car Dealership Inventory System** with AI assistance.
+This file contains the AI prompts used during development of the Car Dealership Inventory System.
 
-## 1. Understanding the Project
+## 1. Project Setup and Backend Development
 
-**Prompt:**
+Prompt:
+"Help me build a car dealership inventory system using FastAPI for the backend and React for the frontend. Guide me through the project structure, authentication, vehicle APIs, database setup, and testing."
 
-I am building a car dealership inventory system using FastAPI for backend and React for frontend. I already know some basics, so explain the project structure and what I should implement step by step.
+## 2. Authentication API
 
-## 2. Backend Setup
+Prompt:
+"I have a FastAPI authentication endpoint for user registration. Explain how the registration API works and help me connect it with the frontend."
 
-**Prompt:**
+## 3. Vehicle API
 
-I have created a FastAPI backend for my car dealership inventory project. Help me understand what files like `main.py`, `database.py`, `models.py` and routes are used for and how they are connected.
+Prompt:
+"I need to implement vehicle management APIs for my car dealership inventory system. Help me create and test endpoints for adding, getting, updating, and deleting vehicles."
 
-## 3. User Registration
+## 4. Debugging FastAPI
 
-**Prompt:**
+Prompt:
+"My FastAPI application is running locally but I am getting errors while testing the vehicle APIs. Explain the error and show me how to fix the code."
 
-I have a register API in FastAPI. Explain how this registration endpoint works and how I can test it using the Swagger API documentation.
+## 5. Frontend Integration
 
-## 4. Authentication
+Prompt:
+"My backend APIs are working. Help me connect the React frontend to the FastAPI backend and implement the admin dashboard for managing vehicles."
 
-**Prompt:**
+## 6. Admin Vehicle Form
 
-I have registration and login APIs. Help me connect authentication with my frontend and explain how the logged-in user is identified when different users use the system.
+Prompt:
+"I updated the admin vehicle adding form. I want to add an upload image option for vehicles. Help me implement the image upload functionality and integrate it into the existing form."
 
-## 5. Vehicle APIs
+## 7. UI Improvements
 
-**Prompt:**
+Prompt:
+"The application is working correctly, but the blue color in the dashboard looks too bright. Help me improve the UI with a softer, muted blue color while keeping the dashboard professional."
 
-I need to add vehicle management to my project. Help me implement the vehicle APIs for adding, viewing, updating and deleting vehicles, and explain the code because I want to understand it.
+## 8. Testing
 
-## 6. Testing Vehicle APIs
+Prompt:
+"I have written tests for the vehicle APIs using pytest. Help me understand how to run the test suite and interpret the test results."
 
-**Prompt:**
+## 9. Git and GitHub
 
-I have written pytest test cases for the vehicle APIs. Help me check whether the test cases are correct and tell me how to run them from the backend folder.
+Prompt:
+"I have an existing project folder and a GitHub repository. Give me the commands to link the local folder to the GitHub repository and push the project."
 
-## 7. Debugging
+## 10. Git Commit
 
-**Prompt:**
+Prompt:
+"I updated the admin vehicle adding form by adding an upload image option. Give me an appropriate Git commit message that follows the required AI co-authorship format."
 
-I am getting this error when I run my FastAPI project. Explain what the error means in simple terms and tell me exactly what I need to change in my code.
+## 11. README Documentation
 
-## 8. Frontend and Backend Connection
+Prompt:
+"My project submission requires a comprehensive README.md with a project explanation, local setup instructions for backend and frontend, screenshots, API documentation, test results, and a My AI Usage section. Help me structure the README."
 
-**Prompt:**
+## 12. AI Usage Reflection
 
-My FastAPI backend is working and I have started the React frontend. Help me connect the frontend to my backend APIs.
+Prompt:
+"Reduce the AI Usage section of my README to only 3-4 points and keep the reflection short and natural."
 
-## 9. Admin Dashboard
+## 13. API Documentation
 
-**Prompt:**
+Prompt:
+"Where can I find the API documentation in my FastAPI project structure, and how should I mention it in the README?"
 
-I want an admin dashboard where the admin can add and manage vehicles. Help me improve my existing React code without changing the main functionality.
+## 14. Final Submission
 
-## 10. Vehicle Image Upload
-
-**Prompt:**
-
-I updated the admin vehicle adding form and now I want to add an upload image option for the vehicle. Help me add this feature to my existing code and explain what changes are needed in the frontend and backend.
-
----
+Prompt:
+"Review the project submission requirements and help me make sure the repository contains the required README.md, PROMPTS.md, screenshots, API documentation reference, and test report."

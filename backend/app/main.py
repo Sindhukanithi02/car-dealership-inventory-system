@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import inspect, text
 
 from .database import engine, Base
 from . import models
@@ -8,6 +9,12 @@ from .routes import auth, vehicles
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
+
+if "image_url" not in {
+    column["name"] for column in inspect(engine).get_columns("vehicles")
+}:
+    with engine.begin() as connection:
+        connection.execute(text("ALTER TABLE vehicles ADD COLUMN image_url VARCHAR"))
 
 
 # Create FastAPI application

@@ -29,6 +29,7 @@ function App() {
     category: "",
     price: "",
     quantity: "",
+    image_url: "",
   });
 
   // --------------------------------
@@ -253,6 +254,11 @@ function App() {
   async function saveVehicle(e) {
     e.preventDefault();
 
+    if (!vehicleForm.image_url) {
+      setMessage("Please add a vehicle image from your files or an image link.");
+      return;
+    }
+
     try {
       const url = editingId
         ? `${API_URL}/api/vehicles/${editingId}`
@@ -272,6 +278,7 @@ function App() {
           category: vehicleForm.category,
           price: Number(vehicleForm.price),
           quantity: Number(vehicleForm.quantity),
+          image_url: vehicleForm.image_url,
         }),
       });
 
@@ -309,6 +316,7 @@ function App() {
       category: vehicle.category,
       price: vehicle.price,
       quantity: vehicle.quantity,
+      image_url: vehicle.image_url || "",
     });
 
     setShowAdminPanel(true);
@@ -383,7 +391,29 @@ function App() {
       category: "",
       price: "",
       quantity: "",
+      image_url: "",
     });
+  }
+
+  function handleVehicleImageFile(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      setMessage("Please choose an image file.");
+      e.target.value = "";
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setVehicleForm((currentForm) => ({
+        ...currentForm,
+        image_url: reader.result,
+      }));
+      setMessage("Vehicle image selected.");
+    };
+    reader.readAsDataURL(file);
   }
 
   // --------------------------------
@@ -773,6 +803,46 @@ function App() {
                 className="border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-slate-400"
               />
 
+              <div className="md:col-span-2 lg:col-span-5 grid md:grid-cols-2 gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
+
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Vehicle image link <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="url"
+                    placeholder="Paste a direct Google Images result link"
+                    value={vehicleForm.image_url.startsWith("data:image/") ? "" : vehicleForm.image_url}
+                    onChange={(e) =>
+                      setVehicleForm({
+                        ...vehicleForm,
+                        image_url: e.target.value,
+                      })
+                    }
+                    className="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-slate-400"
+                  />
+                  <p className="text-xs text-slate-500 mt-2">
+                    Use an image URL copied from Google Images or another source.
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Or upload from files <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleVehicleImageFile}
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2.5 bg-white text-sm text-slate-600 file:mr-3 file:border-0 file:bg-slate-700 file:text-white file:px-3 file:py-2 file:rounded-md"
+                  />
+                  <p className="text-xs text-slate-500 mt-2">
+                    One image is required before saving the vehicle.
+                  </p>
+                </div>
+
+              </div>
+
               <div className="lg:col-span-5 flex gap-3">
 
                 <button
@@ -904,9 +974,23 @@ function App() {
                     className="bg-white rounded-2xl shadow-sm hover:shadow-lg border border-slate-200 transition overflow-hidden"
                   >
 
-                    {/* CARD HEADER */}
+                    {/* CARD IMAGE */}
 
-                    <div className="bg-gradient-to-r from-slate-700 to-indigo-800 p-6 text-white">
+                    <div className="relative h-56 bg-slate-900 overflow-hidden">
+
+                      {vehicle.image_url ? (
+                        <img
+                          src={vehicle.image_url}
+                          alt={`${vehicle.make} ${vehicle.model}`}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-6xl bg-gradient-to-br from-slate-700 to-slate-900">
+                          🚗
+                        </div>
+                      )}
+
+                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 pt-12 text-white">
 
                       <div className="flex justify-between">
 
@@ -926,11 +1010,9 @@ function App() {
 
                         </div>
 
-                        <span className="text-4xl">
-                          🚗
-                        </span>
-
                       </div>
+
+                    </div>
 
                     </div>
 

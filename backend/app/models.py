@@ -22,3 +22,4 @@ class Vehicle(Base):
     category = Column(String, nullable=False)
     price = Column(Float, nullable=False)
     quantity = Column(Integer, default=0, nullable=False)
+    image_url = Column(String, nullable=True)

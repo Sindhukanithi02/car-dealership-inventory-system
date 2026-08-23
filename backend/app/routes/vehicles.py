@@ -15,6 +15,18 @@ router = APIRouter(
 )
 
 
+def vehicle_response(vehicle: Vehicle):
+    return {
+        "id": vehicle.id,
+        "make": vehicle.make,
+        "model": vehicle.model,
+        "category": vehicle.category,
+        "price": vehicle.price,
+        "quantity": vehicle.quantity,
+        "image_url": vehicle.image_url,
+    }
+
+
 # =========================================================
 # ADD VEHICLE
 # =========================================================
@@ -30,21 +42,15 @@ def add_vehicle(
         model=vehicle.model,
         category=vehicle.category,
         price=vehicle.price,
-        quantity=vehicle.quantity
+        quantity=vehicle.quantity,
+        image_url=str(vehicle.image_url)
     )
 
     db.add(new_vehicle)
     db.commit()
     db.refresh(new_vehicle)
 
-    return {
-        "id": new_vehicle.id,
-        "make": new_vehicle.make,
-        "model": new_vehicle.model,
-        "category": new_vehicle.category,
-        "price": new_vehicle.price,
-        "quantity": new_vehicle.quantity
-    }
+    return vehicle_response(new_vehicle)
 
 
 # =========================================================
@@ -65,7 +71,8 @@ def get_vehicles(
             "model": vehicle.model,
             "category": vehicle.category,
             "price": vehicle.price,
-            "quantity": vehicle.quantity
+            "quantity": vehicle.quantity,
+            "image_url": vehicle.image_url
         }
         for vehicle in vehicles
     ]
@@ -121,7 +128,8 @@ def search_vehicles(
             "model": vehicle.model,
             "category": vehicle.category,
             "price": vehicle.price,
-            "quantity": vehicle.quantity
+            "quantity": vehicle.quantity,
+            "image_url": vehicle.image_url
         }
         for vehicle in vehicles
     ]
@@ -147,14 +155,7 @@ def get_vehicle(
             detail="Vehicle not found"
         )
 
-    return {
-        "id": vehicle.id,
-        "make": vehicle.make,
-        "model": vehicle.model,
-        "category": vehicle.category,
-        "price": vehicle.price,
-        "quantity": vehicle.quantity
-    }
+    return vehicle_response(vehicle)
 
 
 # =========================================================
@@ -183,18 +184,12 @@ def update_vehicle(
     existing_vehicle.category = vehicle.category
     existing_vehicle.price = vehicle.price
     existing_vehicle.quantity = vehicle.quantity
+    existing_vehicle.image_url = str(vehicle.image_url)
 
     db.commit()
     db.refresh(existing_vehicle)
 
-    return {
-        "id": existing_vehicle.id,
-        "make": existing_vehicle.make,
-        "model": existing_vehicle.model,
-        "category": existing_vehicle.category,
-        "price": existing_vehicle.price,
-        "quantity": existing_vehicle.quantity
-    }
+    return vehicle_response(existing_vehicle)
 
 
 # =========================================================
@@ -258,14 +253,7 @@ def purchase_vehicle(
 
     return {
         "message": "Vehicle purchased successfully",
-        "vehicle": {
-            "id": vehicle.id,
-            "make": vehicle.make,
-            "model": vehicle.model,
-            "category": vehicle.category,
-            "price": vehicle.price,
-            "quantity": vehicle.quantity
-        }
+        "vehicle": vehicle_response(vehicle)
     }
 
 
@@ -303,12 +291,5 @@ def restock_vehicle(
 
     return {
         "message": "Vehicle restocked successfully",
-        "vehicle": {
-            "id": vehicle.id,
-            "make": vehicle.make,
-            "model": vehicle.model,
-            "category": vehicle.category,
-            "price": vehicle.price,
-            "quantity": vehicle.quantity
-        }
+        "vehicle": vehicle_response(vehicle)
     }

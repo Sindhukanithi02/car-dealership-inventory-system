@@ -143,20 +143,8 @@ python -m pytest tests/ -v
 ```
 
 ### Test Results
+<img width="741" height="491" alt="image" src="https://github.com/user-attachments/assets/91be3b25-435d-4f7d-b8cc-e2477956538b" />
 
-Add your **actual final test output/screenshot** here.
-
-For example:
-
-```text
-========================= test session starts =========================
-...
-PASSED
-PASSED
-PASSED
-...
-========================= tests passed ================================
-```
 
 ## Screenshots
 
@@ -180,6 +168,11 @@ PASSED
 
 
 ### Vehicle Inventory
+<img width="1503" height="944" alt="image" src="https://github.com/user-attachments/assets/fa7c4e5f-a7e8-4130-97d8-cff5f19c5e07" />
+
+
+
+### API Documentation
 ![Uploading image.png…]()
 
 

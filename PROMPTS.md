@@ -1,4 +1,4 @@
-```markdown
+```
 
 This file contains the prompts used while developing the Car Dealership Inventory System with AI assistance.
 
